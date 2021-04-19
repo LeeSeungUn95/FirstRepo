@@ -7,5 +7,7 @@ public class Question2 {
 		System.out.println("Random!!");
 		
 		System.out.println("여기는 mainBranch입니다");
+		
+		System.out.println("1 + 1 = 2");
 	}
 }

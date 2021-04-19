@@ -6,8 +6,6 @@ public class Question2 {
 		
 		System.out.println("Random!!");
 		
-		System.out.println("여기는 branchA 구역입니다");
-	
-		System.out.println("branchA 구역 두번째 업데이트!");
+		System.out.println("여기는 mainBranch입니다");
 	}
 }

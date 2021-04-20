@@ -22,9 +22,26 @@ public class F01_JavaIO {
 	public static void main(String[] args) {
 		FileOutputStream fout = null;
 		try {
+			/*
+			 	# 절대 경로와 상대 경로
+			 	
+			 	　-　원하는 자원까지의 경로를 뿌리(root)부터 모두 적는 것을 절대경로라고 한다
+			 	　　　(C:\, d:\, E:\, http://, https://, ftp://, file://, /)
+			 	
+			 		* 절대 경로 예시
+			 		 - D:\Picturs\animals\penguin.jpg
+			 		 
+			 	　-　원하는 자원까지의 경로를 현재 위치부터 찾아가는 것을 상대경로라고 한다
+			 	　　　상대경로는 ./ 또는 ../로 시작한다(./는 생략이 가능하다)
+			 	
+			 		(./)    : 현재 위치부터 시작
+			 		(./)../ : 상위 폴더 
+			 		
+			 		* 상대경로 예시
+			 		 - ./../../penguin.jpg
+			 */
 			// ※소스에서 현재 위치(./)는 프로젝트의 root이다
-		//	fout = new FileOutputStream("./a.txt", true) 절대경로
-			fout = new FileOutputStream("D:\\files\\a.txt", true);
+			fout = new FileOutputStream("OutputTest.txt", true);
 			for (int i = 0; i < 10; i++) {
 				fout.write(String.format("오늘은 날씨가 참 좋네요..%d\n", i).getBytes());				
 			}

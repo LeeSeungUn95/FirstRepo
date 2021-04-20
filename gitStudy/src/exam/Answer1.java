@@ -7,5 +7,7 @@ public class Answer1 {
 		
 		System.out.println("branch D가 작업할때 branch C도 놀고있지 않았음");
 		System.out.println("C가 D보다 일을 더 잘해서 커밋을 두 번 했음");
+		
+		System.out.println("Answer1");
 	}
 }

@@ -61,10 +61,10 @@
   origin/main 	ㅁ
   
   main			ㅁ - ㅁ - ㅁ - ㅁ - ㅁ - ㅁ 
-  							 \
-  							    ㅁ - ㅁ - ㅁ branchA		   
-								   \
-								         ㅁ - ㅁ branchB
+                            \
+                                                                 ㅁ - ㅁ - ㅁ branchA		   
+                                  \
+                                                                              ㅁ - ㅁ branchB
 								        
 # merge
   - HEAD(현재 보고 있는 상태)로 다른 브렌치의 작업 내용을 합치는 것
@@ -76,13 +76,13 @@
 # rebase
  * rebase 전
   main			ㅁ - ㅁ - ㅁ - ㅁ - ㅁ - ㅁ 
-  							 \
-  							    ㅁ - ㅁ - ㅁ branchA
+                            \
+                                                                 ㅁ - ㅁ - ㅁ branchA
 
  * rebase 후
   main			ㅁ - ㅁ - ㅁ - ㅁ - ㅁ - ㅁ 
-		  							\
-		  							  ㅁ - ㅁ - ㅁ branchA
+		                        	\
+		                                                                 ㅁ - ㅁ - ㅁ branchA
 
 
 

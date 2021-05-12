@@ -7,6 +7,8 @@ public class F02_File {
 	 	# java.util.File
 	 	
 	 	 - 파일 시스템의 파일 정보를 담을 수 있는 클래스
+	 	 - 인스턴스에 담겨있는 정보를 바탕으로 새로운 파일이나 디렉토리를 생성할 수 있다
+	 	 - 이미 존재하는 파일 또는 디렉토리의 정보를 불러오기도 한다
 	 */
 	public static void main(String[] args) {
 		

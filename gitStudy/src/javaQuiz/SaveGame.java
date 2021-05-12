@@ -39,7 +39,7 @@ public class SaveGame {
 				FileInputStream fin = new FileInputStream(newFile);
 				int _byte;
 				while((_byte = fin.read()) != -1) {
-					System.out.print((char)_byte);
+					System.out.println((char)_byte);
 				}
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -105,14 +105,18 @@ public class SaveGame {
 			}
 		}
 		
+		String win_str = Integer.toString(win);
+		String draw_str = Integer.toString(draw);
+		String lose_str = Integer.toString(lose);
+		
 		try {
 			FileOutputStream fout = new FileOutputStream(newFile);
 			fout.write("ÀüÀû : ".getBytes());
-			fout.write(win);
+			fout.write(win_str.getBytes());
 			fout.write("½Â ".getBytes());
-			fout.write(draw);
+			fout.write(draw_str.getBytes());
 			fout.write("¹« ".getBytes());
-			fout.write(lose);
+			fout.write(lose_str.getBytes());
 			fout.write("ÆÐ".getBytes());
 			
 			fout.close();

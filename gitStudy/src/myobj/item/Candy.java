@@ -16,6 +16,6 @@ public class Candy extends Item {
 	}
 	
 	public static void main(String[] args) {
-		new DoranSword().info();;
+		new DoranSword().info();
 	}
 }

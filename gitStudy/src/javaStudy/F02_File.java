@@ -2,7 +2,7 @@ package javaStudy;
 
 import java.io.File;
 
-public class F02_FileIO {
+public class F02_File {
 	/*
 	 	# java.util.File
 	 	

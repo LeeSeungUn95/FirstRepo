@@ -33,7 +33,8 @@ public class Card {
 	
 	private Character suit;
 	private String rank;
-	private boolean attackCard;
+	private boolean attack;
+	private boolean special;
 	private int attackValue;
 	
 	public Card(Character suit, String rank) {
@@ -41,6 +42,14 @@ public class Card {
 		this.rank = rank;
 	}
 
+	public boolean special() {
+		return special;
+	}
+	
+	public void setSpecial(boolean special) {
+		this.special = special;
+	}
+	
 	public Character getSuit() {
 		return suit;
 	}
@@ -57,12 +66,12 @@ public class Card {
 		this.rank = rank;
 	}
 
-	public boolean isAttackCard() {
-		return attackCard;
+	public boolean Attack() {
+		return attack;
 	}
 
-	public void setAttackCard(boolean attackCard) {
-		this.attackCard = attackCard;
+	public void setAttack(boolean attack) {
+		this.attack = attack;
 	}
 
 	public int getAttackValue() {

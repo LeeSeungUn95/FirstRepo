@@ -28,7 +28,6 @@ public class SaveGame {
 		int win = 0;
 		int lose = 0;
 		int draw = 0;
-
 		System.out.println("가위바위보 게임을 시작합니다.");
 		System.out.print("이름을 입력해주세요 > ");
 		String name = sc.nextLine();
@@ -37,9 +36,12 @@ public class SaveGame {
 		if (newFile.exists()) {
 			try {
 				FileInputStream fin = new FileInputStream(newFile);
-				int _byte;
-				while((_byte = fin.read()) != -1) {
-					System.out.println((char)_byte);
+				byte[] buffer = new byte[25];
+				
+				// ※ 원하는 바이트 크기만큼씩 읽기
+				int len;
+				while ((len = fin.read(buffer)) != -1) {
+					System.out.println(new String(buffer));
 				}
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -111,7 +113,7 @@ public class SaveGame {
 		
 		try {
 			FileOutputStream fout = new FileOutputStream(newFile);
-			fout.write("전적 : ".getBytes());
+			fout.write("지난 전적 : ".getBytes());
 			fout.write(win_str.getBytes());
 			fout.write("승 ".getBytes());
 			fout.write(draw_str.getBytes());

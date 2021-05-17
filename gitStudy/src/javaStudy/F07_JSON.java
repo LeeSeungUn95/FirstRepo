@@ -126,10 +126,6 @@ public class F07_JSON {
 	
 	public Map<String, Object> jsonToMap() {
 		
-		Pattern regex_str = Pattern.compile("\"[\\d&&\\w]+\"");
-		for (int i = 0; i < 10; i++) {
-			System.out.println(regex_str);
-		}
 		Map<String, Object> retMap = new HashMap<>();
 		
 		

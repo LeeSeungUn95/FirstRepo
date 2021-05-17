@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -14,139 +16,173 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.StreamCorruptedException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
 public class F07_JSON {
-	
+
 	/*
-	 	# JSON
-	 	
-	 		- JavaScript의 Object타입과 굉장히 유사한 형태의 데이터 표현 박식
-	 		- 문자열만으로 다양한 데이터를 간결하게 표현할 수 있어서 인기가 많다
-	 		- { "Key" : Value, "Key" : Value, ...}
-	 	
-	 	# JSON의 Value에 표현 가능한 타입들
-	 	
-	 		- '', "" : String
-	 		- 숫자, 소수 : Number
-	 		- null
-	 		- [] : Array
-	 		- {} : Object (JAVA의 Map)
+             # JSON
+
+              - JavaScript의 Object타입과 굉장히 유사한 형태의 데이터 표현 방식
+              - 문자열만으로 다양한 데이터를 간결하게 표현할 수 있어서 인기가 많다
+              - { "Key" : Value, "Key" : Value , ... }
+
+             # JSON의 Value에 표현 가능한 타입들
+
+              - '', "" : String
+              - 숫자, 소수 : Number
+              - null
+              - [] : Array
+              - {} : Object (JAVA의 Map)
 	 */
 	public static void main(String[] args) {
-		
-		// myMap에 저장된 데이터들을 JSON형태의 문자열로 만들어 출력하는 메서드를 만들어보세요
+
+		// myMap에 저장된 데이터들을 JSON형태의 문자열로 만들어 파일에 출력하는 
+		// 메서드를 만들어보세요 
 		// (확장자는 .json)
 		HashMap<String, Object> myMap = new HashMap<>();
-		
+
 		myMap.put("name", "홍길동");
-		myMap.put("age", 12);
+		myMap.put("age", 123);
 		myMap.put("tel", "010-1234-1234");
 		myMap.put("tel2", null);
 		myMap.put("language", new String[] {"C", "JAVA", "Javascript", "React"});
 		myMap.put("lotto", new Integer[] {1, 2, 3, 4, 5, 6, 7});
 
-		new F07_JSON().mapToJsonFile(myMap);
-		new F07_JSON().mapToJsonStr(myMap);
-		
-		
-	}	
-	public void mapToJsonFile(HashMap<String, Object> myMap) {
-		
-		try {
-			OutputStreamWriter jsonOutFile = new OutputStreamWriter(
-					new FileOutputStream("./data/myMap.json"), Charset.forName("UTF-8"));
-			
-			jsonOutFile.append("myMap = {\n");
-			for (String key : myMap.keySet()) {
-				jsonOutFile.append(String.format("\t\"%s\" : ", key));
-				Object value = myMap.get(key);
-				
-				if (value instanceof String[]) {
-					String[] arr = (String[]) value;
-					
-					jsonOutFile.append("[");
-					for (int i = 0; i < arr.length; i++) {
-						if (i < arr.length - 1) {
-							jsonOutFile.append(String.format("\"%s\",", arr[i]));							
-						} else {
-							jsonOutFile.append(String.format("\"%s\"", arr[i]));							
-						}
-					}
-					jsonOutFile.append("],\n");
-				} else if (value instanceof Integer[]) {
-					Integer[] arr = (Integer[]) value;
-					
-					jsonOutFile.append("[");
-					for (int i = 0; i < arr.length; i++) {
-						if (i < arr.length - 1) {
-							jsonOutFile.append(String.format("%d,", arr[i]));							
-						} else {
-							jsonOutFile.append(String.format("%d", arr[i]));														
-						}
-					}
-					jsonOutFile.append("],\n");
-				} else if (value instanceof String) {
-					jsonOutFile.append(String.format("\"%s\",\n", value));
-				} else {			
-					jsonOutFile.append(String.format("%d,\n", value));
-				}
+		// mapToJsonFile(myMap);                
+
+		// 작성된 파일의 내용을 다시 JAVA 맵으로 로드하는 메서드를 만들어보세요
+		Map<String, Object> map = (readJsonFile("./data/json.json"));
+		System.out.println(map);
+	}
+
+	public static Map<String, Object> readJsonFile(String path) {                
+		File jsonFile = new File(path);
+		StringBuilder sb = new StringBuilder();
+
+		try (FileReader in = new FileReader(jsonFile)) {
+
+			char[] buff = new char[2048];
+
+			int len = -1;
+			while ((len = in.read(buff)) != -1) {
+				sb.append(new String(buff, 0, len));
 			}
-			jsonOutFile.append("}");
-			jsonOutFile.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (IOException e) {                        
 			e.printStackTrace();
 		}
-		jsonToMap();
-	}
-		
-	
-	public void mapToJsonStr(HashMap<String, Object>myMap) {
-		
-		try {
-			InputStreamReader in = new InputStreamReader(
-					new FileInputStream(
-							new File("./data/myMap.json")), Charset.forName("UTF-8"));
-			
-			int ch;
-			while ((ch = in.read()) != -1) {
-				System.out.print((char)ch);
-			}
-			in.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public Map<String, Object> jsonToMap() {
-		
-		Map<String, Object> retMap = new HashMap<>();
-		
-		
-		return retMap;
-	}
-	public void printReturnMap(Map<String, Object> retMap) {
-		for (String key : retMap.keySet()) {
-			Object value = retMap.get(key);
 
-			if (value instanceof String[]) {
-				String[] arr = (String[]) value;
+		sb.deleteCharAt(sb.indexOf("{"));
+		sb.deleteCharAt(sb.lastIndexOf("}"));
 
-				System.out.print("[");				
-				for (int i = 0; i < arr.length; i++) {
-					System.out.print("\"");
-					System.out.print(arr[i] + "\", ");
+		// 문자열 split을 좀더 객체지향적으로 활용할 수 있는 클래스
+		StringTokenizer st = new StringTokenizer(sb.toString(), ",");
+		Map<String, Object> map = new HashMap<>();
+
+		boolean appendingArray = false;
+
+		String key = null;
+		ArrayList<Object> list = new ArrayList<>();                
+
+		while (st.hasMoreTokens()) {
+			String token = st.nextToken();
+
+			if (appendingArray) {
+				if (!token.contains("]")) {
+					list.add(parseJsonValue(token.trim()));
+				} else {
+					appendingArray = false;                                        
+					list.add(parseJsonValue(token.replace("]", "")));
+					map.put(key, list);
+					list = new ArrayList<>();
 				}
-				System.out.println("]");			
-			} else {
-				System.out.println("\""+key + "\" : \"" + value + "\"");				
-			}			
+				continue;
+			}                        
+
+			// "language":["C"
+			if (token.contains("[")) {
+				appendingArray = true;                                
+				String[] entry = token.trim().split(":");                                
+				key = entry[0].trim().replace("\"", "");                                
+				list.add(parseJsonValue(entry[1].replace("[", "")));                                
+				continue;
+			}
+
+			String[] entry = token.trim().split(":");                        
+
+			map.put(entry[0].trim().replace("\"", ""), parseJsonValue(entry[1].trim()));
+		}
+
+		return map;
+	}
+
+	private static Object parseJsonValue(String value) {
+		//            System.out.println("parseJsonValue: " + value);
+
+		if (value.contains("\"")) {
+			return value.replace("\"", "");
+		} else if (!value.equals("null")) {
+			return Integer.parseInt(value.trim());
+		}
+
+		return null;
+	}
+
+	public static void mapToJsonFile(Map<String, Object> map) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("{");
+
+		int i = 0, len = map.size();
+
+
+		for (Entry<String, Object> entry : map.entrySet()) {
+			sb.append("\"" + entry.getKey() + "\":");
+
+			Object value = entry.getValue();
+			if (value instanceof String) {
+				sb.append("\"" + entry.getValue() + "\"");
+			} else if (value instanceof Integer || value instanceof Double 
+					|| value instanceof Float) {
+				sb.append(entry.getValue());
+			} else if (value instanceof Integer[]) {
+				sb.append(Arrays.toString((Integer[])value));
+			} else if (value instanceof String[]) {
+				sb.append("[");
+
+				for (int j = 0, len2 = ((String[]) value).length; j < len2; ++j) {
+					sb.append("\"" + ((String[]) value)[j] + "\"");
+
+					if (j != len2 - 1) {
+						sb.append(",");
+					}
+				}
+
+				sb.append("]");
+			} else if (value == null) {
+				sb.append("null");
+			}
+
+			if (i++ != len - 1) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("}");
+
+		File jsonFile = new File("./data/json.json");
+		Charset utf8 = Charset.forName("UTF-8");
+
+		// try auto close (Autocloseable 인터페이스가 구현되어 있어야 함)
+		try (FileWriter out = new FileWriter(jsonFile)) {
+			out.append(sb);
+		} catch (IOException e) {                        
+			e.printStackTrace();
 		}
 	}
 }

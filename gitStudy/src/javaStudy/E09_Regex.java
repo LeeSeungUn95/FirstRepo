@@ -124,7 +124,6 @@ public class E09_Regex {
 		
 		System.out.println(Arrays.toString(fruits));
 		
-		
 		Pattern regex2 = Pattern.compile("apple");
 		
 		Matcher matcher = regex2.matcher(fruit_text);

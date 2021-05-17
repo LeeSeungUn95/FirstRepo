@@ -1,4 +1,4 @@
-package javaQuiz;
+package teacher;
 
 import java.util.Collections;
 import java.util.HashSet;

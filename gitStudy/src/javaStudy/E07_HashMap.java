@@ -76,11 +76,12 @@ public class E07_HashMap {
 				
 				System.out.print("[");				
 				for (int i = 0; i < arr.length; i++) {
-					System.out.print(arr[i] + ", ");
+					System.out.print("\"");
+					System.out.print(arr[i] + "\", ");
 				}
 				System.out.println("]");			
 			} else {
-				System.out.println(key + " : " + value);				
+				System.out.println("\""+key + "\" : \"" + value + "\"");				
 			}			
 		}
 		

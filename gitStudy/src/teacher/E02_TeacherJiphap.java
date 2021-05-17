@@ -1,4 +1,4 @@
-package javaQuiz;
+package teacher;
 
 import java.util.ArrayList;
 import java.util.Collection;

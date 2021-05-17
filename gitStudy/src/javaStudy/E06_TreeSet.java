@@ -70,7 +70,7 @@ public class E06_TreeSet {
 		System.out.println(grape_tree.subSet(new Grape().setGno("3"), new Grape().setGno("1")));
 		
 		TreeSet<Integer> int_tree = new TreeSet<>();
-		
+
 		int_tree.add(99);
 		int_tree.add(3);
 		int_tree.add(97);

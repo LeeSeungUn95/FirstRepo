@@ -1,4 +1,4 @@
-package javaQuiz;
+package teacher;
 
 import java.io.File;
 import java.io.FileInputStream;

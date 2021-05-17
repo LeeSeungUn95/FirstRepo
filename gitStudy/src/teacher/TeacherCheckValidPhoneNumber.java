@@ -1,4 +1,4 @@
-package javaQuiz;
+package teacher;
 
 public class TeacherCheckValidPhoneNumber {
 	

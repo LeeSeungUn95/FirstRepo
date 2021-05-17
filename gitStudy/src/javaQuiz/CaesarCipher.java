@@ -36,46 +36,13 @@ public class CaesarCipher {
 	 */
 	
 	public static void main(String[] args) {
-		Random ran = new Random();
-		int randomNumber = ran.nextInt(25)+ 1;
-		
-		try (FileReader in = new FileReader(new File("./data/text/frankenstein.txt"))){
-			BufferedWriter bout = 
-					new BufferedWriter(
-							new FileWriter(
-									new File("./data/text/frankenstein.encrypted.txt")));
-			
-			int _byte;
-			while((_byte = in.read()) != -1) {
-				System.out.print((char)_byte);
-				int Caesar_byte = (char)(_byte + randomNumber);
-				if (_byte >= 'A' && _byte <= 'Z') {
-					if (Caesar_byte > 'Z') {
-						bout.append((char)(Caesar_byte - 26));
-					} else {
-						bout.append((char)Caesar_byte);						
-					}
-				} else if (_byte >= 'a' && _byte <='z') {
-					if (Caesar_byte > 'z') {
-						bout.append((char)(Caesar_byte - 26));						
-					} else {
-						bout.append((char)Caesar_byte);												
-					}
-				} else {
-					bout.append((char)_byte);
-				}
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}	
+		saveToRandomSaesarCipher("./data/text/frankenstein.txt");
 	}
-	public void savaRandomSaesarCipher() {
+	public static void saveToRandomSaesarCipher(String file) {
 		Random ran = new Random();
 		int randomNumber = ran.nextInt(25)+ 1;
 		
-		try (FileReader in = new FileReader(new File("./data/text/frankenstein.txt"))){
+		try (FileReader in = new FileReader(new File(file))){
 			BufferedWriter bout = 
 					new BufferedWriter(
 							new FileWriter(
@@ -83,7 +50,6 @@ public class CaesarCipher {
 			
 			int _byte;
 			while((_byte = in.read()) != -1) {
-				System.out.print((char)_byte);
 				int Caesar_byte = (char)(_byte + randomNumber);
 				if (_byte >= 'A' && _byte <= 'Z') {
 					if (Caesar_byte > 'Z') {
